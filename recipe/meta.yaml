@@ -1,5 +1,5 @@
 {% set name = "binutils" %}
-{% set version = "2.36.1" %}
+{% set version = "2.39" %}
 {% set chost = ctng_cpu_arch ~ "-" ~ ctng_vendor ~ "-linux-gnu-" %}
 
 package:
@@ -8,18 +8,12 @@ package:
 
 source:
   - url: https://ftp.gnu.org/gnu/binutils/binutils-{{ version }}.tar.bz2
-    sha256: 5b4bd2e79e30ce8db0abd76dd2c2eae14a94ce212cfc59d3c37d23e24bc6d7a3
-    folder: .
+    sha256: da24a84fef220102dd24042df06fdea851c2614a5377f86effa28f33b7b16148
     patches:
       - patches/0001-fallback-sysroot.diff
 
-  # Get the patches from crosstool-ng
-  - url: https://github.com/crosstool-ng/crosstool-ng/archive/94b98a4cc96ff6c4ca982ea19db953447e802919.tar.gz
-    sha256: 0d8a827c90cb11988fb15a5a284b287b58e43d7575104771d17df98ce9f30f2d
-    folder: crosstool_ng
-
 build:
-  number: 2
+  number: 0
   skip: true   # [win]
   detect_binary_files_with_prefix: false
 
