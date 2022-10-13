@@ -19,7 +19,7 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}   # [linux]
+    - {{ compiler('cxx') }}
     - make                    # [osx]
     - bison
   host:
