@@ -43,10 +43,6 @@ get_triplet() {
   fi
 }
 
-for file in ./crosstool_ng/packages/binutils/${PKG_VERSION}/*.patch; do
-  patch -p1 < $file;
-done
-
 # Fix permissions on license files--not sure why these are world-writable, but that's how
 # they come from the upstream tarball
 chmod og-w COPYING*
