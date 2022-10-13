@@ -21,6 +21,7 @@ requirements:
   build:
     - {{ compiler('cxx') }}   # [build_platform != target_platform and linux]
     - make                    # [osx]
+    - bison
   host:
   run:
 
