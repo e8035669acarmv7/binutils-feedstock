@@ -31,11 +31,11 @@ outputs:
     build:
       merge_build_host: false
       detect_binary_files_with_prefix: false
-      ignore_run_exports_from:
-        - {{ compiler('cxx') }}   # [build_platform != target_platform and linux]
+      ignore_run_exports_from:    # [linux]
+        - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
-        - {{ compiler('cxx') }}   # [build_platform != target_platform and linux]
+        - {{ compiler('cxx') }}
       host:
       run:
       run_constrained:
@@ -53,11 +53,11 @@ outputs:
       detect_binary_files_with_prefix: false
       ignore_run_exports:
         - __glibc
-      ignore_run_exports_from:
-        - {{ compiler('cxx') }}   # [build_platform != target_platform and linux]
+      ignore_run_exports_from:    # [linux]
+        - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
-        - {{ compiler('cxx') }}   # [build_platform != target_platform and linux]
+        - {{ compiler('cxx') }}
       host:
         - ld_impl_{{ ctng_target_platform }} {{ version }}
       run:
