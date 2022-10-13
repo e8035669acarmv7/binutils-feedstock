@@ -68,9 +68,9 @@ export BUILD="$(get_triplet $build_platform)"
 export HOST="$(get_triplet $target_platform)"
 export TARGET="$(get_triplet $ctng_target_platform)"
 
-if [[ "$target_platform" != "$build_platform" && "$target_platform" == linux-* ]]; then
+if [[ "$target_platform" == linux-* ]]; then
   # Since we might not have libgcc-ng packaged yet, let's statically link in libgcc
-  export LDFLAGS="$LDFLAGS -static-libgcc -static-libstdc++"
+  export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 fi
 
 # Workaround a problem in conda-build. xref https://github.com/conda/conda-build/pull/4253
