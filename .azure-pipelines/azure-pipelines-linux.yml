@@ -11,35 +11,35 @@ jobs:
       linux_64_ctng_cpu_archaarch64ctng_target_platformlinux-aarch64ctng_vendorconda_cos7:
         CONFIG: linux_64_ctng_cpu_archaarch64ctng_target_platformlinux-aarch64ctng_vendorconda_cos7
         UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_ctng_cpu_archpowerpc64lectng_target_platformlinux-ppc64lectng_vendorconda_cos7:
         CONFIG: linux_64_ctng_cpu_archpowerpc64lectng_target_platformlinux-ppc64lectng_vendorconda_cos7
         UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_ctng_cpu_archs390xctng_target_platformlinux-s390xctng_vendorconda_cos7:
         CONFIG: linux_64_ctng_cpu_archs390xctng_target_platformlinux-s390xctng_vendorconda_cos7
         UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_ctng_cpu_archx86_64ctng_target_platformlinux-64ctng_vendorconda_cos6:
         CONFIG: linux_64_ctng_cpu_archx86_64ctng_target_platformlinux-64ctng_vendorconda_cos6
         UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_s390x_ctng_cpu_archaarch64ctng_target_platformlinux-aarch64ctng_vendorconda_cos7:
         CONFIG: linux_s390x_ctng_cpu_archaarch64ctng_target_platformlinux-aarch64ctng_vendorconda_cos7
         UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_s390x_ctng_cpu_archpowerpc64lectng_target_platformlinux-ppc64lectng_vendorconda_cos7:
         CONFIG: linux_s390x_ctng_cpu_archpowerpc64lectng_target_platformlinux-ppc64lectng_vendorconda_cos7
         UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_s390x_ctng_cpu_archs390xctng_target_platformlinux-s390xctng_vendorconda_cos7:
         CONFIG: linux_s390x_ctng_cpu_archs390xctng_target_platformlinux-s390xctng_vendorconda_cos7
         UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_s390x_ctng_cpu_archx86_64ctng_target_platformlinux-64ctng_vendorconda_cos6:
         CONFIG: linux_s390x_ctng_cpu_archx86_64ctng_target_platformlinux-64ctng_vendorconda_cos6
         UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
   timeoutInMinutes: 360
 
   steps:
@@ -60,6 +60,11 @@ jobs:
         export CI=azure
         export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
         export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        if [[ "${BUILD_REASON:-}" == "PullRequest" ]]; then
+          export IS_PR_BUILD="True"
+        else
+          export IS_PR_BUILD="False"
+        fi
         .scripts/run_docker_build.sh
     displayName: Run docker build
     env:
