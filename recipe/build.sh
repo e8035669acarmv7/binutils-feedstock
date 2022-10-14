@@ -95,6 +95,7 @@ fi
   --disable-sim \
   --disable-gdb \
   --disable-nls \
+  --disable-gprofng \
   --enable-default-pie \
   --with-sysroot=$PREFIX/$HOST/sysroot \
   $CONFIG_ARGS || (cat config.log; false)
