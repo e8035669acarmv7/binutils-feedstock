@@ -64,8 +64,8 @@ outputs:
         - sysroot_{{ ctng_target_platform }}
     test:
       downstreams:
-        - gfortran_impl_{{ ctng_target_platform }}>=12
-        - gcc_impl_{{ ctng_target_platform }}>=12
+        # - gfortran_impl_{{ ctng_target_platform }}
+        - gcc_impl_{{ ctng_target_platform }}
       commands:
         - {{ chost }}addr2line --help
         - {{ chost }}ar --help
