@@ -43,10 +43,6 @@ get_triplet() {
   fi
 }
 
-for file in ./crosstool_ng/packages/binutils/${PKG_VERSION}/*.patch; do
-  patch -p1 < $file;
-done
-
 # Fix permissions on license files--not sure why these are world-writable, but that's how
 # they come from the upstream tarball
 chmod og-w COPYING*
@@ -72,9 +68,9 @@ export BUILD="$(get_triplet $build_platform)"
 export HOST="$(get_triplet $target_platform)"
 export TARGET="$(get_triplet $ctng_target_platform)"
 
-if [[ "$target_platform" != "$build_platform" && "$target_platform" == linux-* ]]; then
+if [[ "$target_platform" == linux-* ]]; then
   # Since we might not have libgcc-ng packaged yet, let's statically link in libgcc
-  export LDFLAGS="$LDFLAGS -static-libgcc -static-libstdc++"
+  export LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 fi
 
 # Workaround a problem in conda-build. xref https://github.com/conda/conda-build/pull/4253
@@ -99,6 +95,7 @@ fi
   --disable-sim \
   --disable-gdb \
   --disable-nls \
+  --disable-gprofng \
   --enable-default-pie \
   --with-sysroot=$PREFIX/$HOST/sysroot \
   $CONFIG_ARGS || (cat config.log; false)
