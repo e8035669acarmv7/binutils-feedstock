@@ -11,6 +11,7 @@ source:
     sha256: da24a84fef220102dd24042df06fdea851c2614a5377f86effa28f33b7b16148
     patches:
       - patches/0001-fallback-sysroot.diff
+      # Patch for 2.39 from https://sourceware.org/bugzilla/show_bug.cgi?id=29435
       - patches/bug29435.patch
 
 build:
