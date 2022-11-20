@@ -18,11 +18,17 @@ ctng_target_platform:
 - linux-ppc64le
 ctng_vendor:
 - conda_cos7
+cxx_compiler:
+- gcc_bootstrap
+cxx_compiler_version:
+- '10'
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
 target_platform:
 - linux-aarch64
 zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
 - - ctng_cpu_arch
   - ctng_vendor
   - ctng_target_platform
