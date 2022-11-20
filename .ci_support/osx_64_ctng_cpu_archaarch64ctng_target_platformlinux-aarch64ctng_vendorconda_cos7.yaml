@@ -14,11 +14,17 @@ ctng_target_platform:
 - linux-aarch64
 ctng_vendor:
 - conda_cos7
+cxx_compiler:
+- clangxx
+cxx_compiler_version:
+- '14'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 target_platform:
 - osx-64
 zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
 - - ctng_cpu_arch
   - ctng_vendor
   - ctng_target_platform
