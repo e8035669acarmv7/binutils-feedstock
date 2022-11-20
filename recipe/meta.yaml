@@ -11,9 +11,10 @@ source:
     sha256: da24a84fef220102dd24042df06fdea851c2614a5377f86effa28f33b7b16148
     patches:
       - patches/0001-fallback-sysroot.diff
+      - patches/bug29435.patch
 
 build:
-  number: 0
+  number: 1
   skip: true   # [win]
   detect_binary_files_with_prefix: false
 
