@@ -1,5 +1,5 @@
 {% set name = "binutils" %}
-{% set version = "2.39" %}
+{% set version = "2.40" %}
 {% set chost = ctng_cpu_arch ~ "-" ~ ctng_vendor ~ "-linux-gnu-" %}
 
 package:
@@ -8,15 +8,15 @@ package:
 
 source:
   - url: https://ftp.gnu.org/gnu/binutils/binutils-{{ version }}.tar.bz2
-    sha256: da24a84fef220102dd24042df06fdea851c2614a5377f86effa28f33b7b16148
+    sha256: f8298eb153a4b37d112e945aa5cb2850040bcf26a3ea65b5a715c83afe05e48a
     patches:
       - patches/0001-fallback-sysroot.diff
       # Patch for 2.39 from https://sourceware.org/bugzilla/show_bug.cgi?id=29435
       - patches/bug29435.patch
 
 build:
-  number: 1
-  skip: true   # [win]
+  number: 0
+  skip: true  # [win]
   detect_binary_files_with_prefix: false
 
 requirements:
@@ -32,7 +32,7 @@ outputs:
     build:
       merge_build_host: false
       detect_binary_files_with_prefix: false
-      ignore_run_exports_from:    # [linux]
+      ignore_run_exports_from:   # [linux]
         - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
@@ -54,7 +54,7 @@ outputs:
       detect_binary_files_with_prefix: false
       ignore_run_exports:
         - __glibc
-      ignore_run_exports_from:    # [linux]
+      ignore_run_exports_from:   # [linux]
         - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
