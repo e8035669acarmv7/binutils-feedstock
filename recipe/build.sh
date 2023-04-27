@@ -24,6 +24,8 @@ get_cpu_arch() {
     CPU_ARCH="aarch64"
   elif [[ "$1" == *"-s390x" ]]; then
     CPU_ARCH="s390x"
+  elif [[ "$1" == *"-armv7l" ]]; then
+    CPU_ARCH="armv7l"
   else
     echo "Unknown architecture"
     exit 1
@@ -32,7 +34,9 @@ get_cpu_arch() {
 }
 
 get_triplet() {
-  if [[ "$1" == linux-* ]]; then
+  if [[ "$1" == linux-armv7l ]]; then
+    echo "$(get_cpu_arch $1)-conda-linux-gnueabihf"
+  elif [[ "$1" == linux-* ]]; then
     echo "$(get_cpu_arch $1)-conda-linux-gnu"
   elif [[ "$1" == osx-64 ]]; then
     echo "x86_64-apple-darwin13.4.0"

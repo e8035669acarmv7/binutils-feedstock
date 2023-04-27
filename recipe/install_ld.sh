@@ -6,8 +6,8 @@ cd build
 
 make DESTDIR=$PWD/install install-strip
 
-CHOST="${ctng_cpu_arch}-conda-linux-gnu"
-OLD_CHOST="${ctng_cpu_arch}-${ctng_vendor}-linux-gnu"
+CHOST="${ctng_cpu_arch}-conda-linux-gnueabihf"
+OLD_CHOST="${ctng_cpu_arch}-${ctng_vendor}-linux-gnueabihf"
 mkdir -p $PREFIX/bin
 mkdir -p $PREFIX/$OLD_CHOST/bin
 mkdir -p $PREFIX/$CHOST/bin
