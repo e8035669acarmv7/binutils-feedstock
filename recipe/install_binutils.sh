@@ -5,8 +5,8 @@ set -e
 cd build
 
 make install-strip
-export HOST="${ctng_cpu_arch}-conda-linux-gnu"
-export OLD_HOST="${ctng_cpu_arch}-${ctng_vendor}-linux-gnu"
+export HOST="${ctng_cpu_arch}-conda-linux-gnueabihf"
+export OLD_HOST="${ctng_cpu_arch}-${ctng_vendor}-linux-gnueabihf"
 mkdir -p $PREFIX/$OLD_HOST/bin
 # Remove hardlinks and replace them by softlinks
 for tool in addr2line ar as c++filt dwp elfedit gprof ld.bfd ld.gold nm objcopy objdump ranlib readelf size strings strip; do

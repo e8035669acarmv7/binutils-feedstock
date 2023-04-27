@@ -1,6 +1,6 @@
 {% set name = "binutils" %}
 {% set version = "2.40" %}
-{% set chost = ctng_cpu_arch ~ "-" ~ ctng_vendor ~ "-linux-gnu-" %}
+{% set chost = ctng_cpu_arch ~ "-" ~ ctng_vendor ~ "-linux-gnueabihf-" %}
 
 package:
   name: binutils_split
@@ -19,8 +19,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
-    - make                    # [osx]
+    #  - {{ compiler('cxx') }}
+    # - make                    # [osx]
   host:
   run:
 
@@ -31,10 +31,10 @@ outputs:
       merge_build_host: false
       detect_binary_files_with_prefix: false
       ignore_run_exports_from:   # [linux]
-        - {{ compiler('cxx') }}   # [linux]
+        # - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
-        - {{ compiler('cxx') }}
+          # - {{ compiler('cxx') }}
       host:
       run:
       run_constrained:
@@ -43,7 +43,7 @@ outputs:
       commands:
         - {{ chost }}ld --help
         - echo "{{ ctng_vendor }}"
-        - echo {{ c_compiler_version }}
+        # - echo {{ c_compiler_version }}
 
   - name: binutils_impl_{{ ctng_target_platform }}
     script: install_binutils.sh
@@ -52,11 +52,11 @@ outputs:
       detect_binary_files_with_prefix: false
       ignore_run_exports:
         - __glibc
-      ignore_run_exports_from:   # [linux]
-        - {{ compiler('cxx') }}   # [linux]
+      # ignore_run_exports_from:   # [linux]
+        # - {{ compiler('cxx') }}   # [linux]
     requirements:
       build:
-        - {{ compiler('cxx') }}
+        # - {{ compiler('cxx') }}
       host:
         - ld_impl_{{ ctng_target_platform }} {{ version }}
       run:
@@ -84,7 +84,7 @@ outputs:
         - {{ chost }}size --help
         - {{ chost }}strings --help
         - {{ chost }}strip --help
-        - echo {{ c_compiler_version }}
+        # - echo {{ c_compiler_version }}
 
   - name: binutils
     script: install_binutils_symlinks.sh
